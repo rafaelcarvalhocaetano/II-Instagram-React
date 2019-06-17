@@ -5,8 +5,15 @@ const api = axios.create({
   headers: {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
+    'X-Custom-Header': 'foobar',
+    'X-Requested-With': 'XMLHttpRequest',
+    'content-type': 'application/x-www-form-urlencoded',
     'mode': 'no-cors',
   }
 });
+
+
+api.defaults.baseURL = 'https://backend-instagram.herokuapp.com';
+api.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 export default api;
