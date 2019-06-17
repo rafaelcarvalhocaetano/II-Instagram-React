@@ -29,7 +29,7 @@ class New extends Component {
     data.append('place', this.state.place);
     data.append('description', this.state.description);
     data.append('hashtags', this.state.hashtags);
-    api.post('https://backend-instagram.herokuapp.co/posts', data);
+    api.post('posts', data);
     // direcionando a rota raiz
     this.props.history.push('/');
   }
