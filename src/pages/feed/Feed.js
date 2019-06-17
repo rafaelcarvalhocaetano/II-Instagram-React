@@ -28,7 +28,15 @@ class Feed extends Component {
 
   async componentDidMount() {
     this.registreToSocket();
-    const response = await api.get("posts");
+    const response = await api.get('posts', {
+      withCredentials: true,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Authorization',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+        'Content-Type': 'application/json;charset=UTF-8'
+      },
+    });
     this.setState({ feed: response.data });
   }
 
