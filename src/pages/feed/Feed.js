@@ -15,7 +15,7 @@ class Feed extends Component {
   };
 
   registreToSocket() {
-    const socket = io(process.env.API_REST);
+    const socket = io('https://backend-instagram.herokuapp.com');
     socket.on('posts', x => {
       this.setState({feed: [x, ...this.state.feed]});
     })
@@ -48,7 +48,7 @@ class Feed extends Component {
               </div>
               <img src={more} alt="more" />
             </header>
-            <img src={`${process.env.API_REST}/files/${x.image}`} alt="logo" />
+            <img src={`https://backend-instagram.herokuapp.com/files/${x.image}`} alt="logo" />
             <footer>
               <div className="actions">
                 <button type="button" onClick={() => this.handleLike(x._id)} >
