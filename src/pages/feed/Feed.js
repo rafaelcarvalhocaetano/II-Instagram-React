@@ -15,7 +15,7 @@ class Feed extends Component {
   };
 
   registreToSocket() {
-    const socket = io('http://localhost:8888');
+    const socket = io(process.env.API_REST);
     socket.on('posts', x => {
       this.setState({feed: [x, ...this.state.feed]});
     })
@@ -28,15 +28,7 @@ class Feed extends Component {
 
   async componentDidMount() {
     this.registreToSocket();
-    const response = await api.get('posts', {
-      withCredentials: true,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Authorization',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-        'Content-Type': 'application/json;charset=UTF-8'
-      },
-    });
+    const response = await api.get('posts');
     this.setState({ feed: response.data });
   }
 
@@ -56,14 +48,14 @@ class Feed extends Component {
               </div>
               <img src={more} alt="more" />
             </header>
-            <img src={`http://localhost:8888/files/${x.image}`} alt="logo" />
+            <img src={`${process.env.API_REST}/files/${x.image}`} alt="logo" />
             <footer>
               <div className="actions">
                 <button type="button" onClick={() => this.handleLike(x._id)} >
-                  <img src={like} alt="" className={x.likes > 0 ? 'ccv': ''}/>
+                  <img src={like} alt="like" className={x.likes > 0 ? 'ccv': ''}/>
                 </button>
-                <img src={comment} alt="" />
-                <img src={send} alt="" />
+                <img src={comment} alt="comment" />
+                <img src={send} alt="send" />
               </div>
               <strong>{x.likes} curtidas</strong>
               <p>

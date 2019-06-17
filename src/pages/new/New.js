@@ -29,15 +29,7 @@ class New extends Component {
     data.append('place', this.state.place);
     data.append('description', this.state.description);
     data.append('hashtags', this.state.hashtags);
-    api.post('posts', data, {
-      withCredentials: true,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Authorization',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-        'Content-Type': 'application/json;charset=UTF-8'
-      }
-    });
+    api.post('posts', data);
     // direcionando a rota raiz
     this.props.history.push('/');
   }
