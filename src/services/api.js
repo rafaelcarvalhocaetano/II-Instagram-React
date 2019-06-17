@@ -12,7 +12,6 @@ const api = axios.create({
   }
 });
 
-
 api.defaults.baseURL = 'https://backend-instagram.herokuapp.com';
 api.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
